@@ -55,8 +55,9 @@ impl<'a> Generator<'a> {
         }
 
         if !self.ctx.config.book.authors.is_empty() {
-            self.builder
-                .metadata("author", self.ctx.config.book.authors.join(", "))?;
+            for author in &self.ctx.config.book.authors {
+                self.builder.metadata("author", author)?;
+            }
         }
 
         self.builder
